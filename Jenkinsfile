@@ -10,7 +10,14 @@ pipeline {
         stage('Setup') {
             steps {
                 script {
-                    sh 'sudo apt-get install -y nodejs'
+                    // Install Node.js using nvm (Node Version Manager)
+                    sh 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash'
+                    sh 'export NVM_DIR="$HOME/.nvm"'
+                    sh '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'
+                    sh '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"'
+                    sh 'nvm install node'
+
+                    // Verify Node.js and npm installation
                     sh 'node --version'
                     sh 'npm --version'
                 }
