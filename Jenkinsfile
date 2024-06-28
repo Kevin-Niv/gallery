@@ -13,8 +13,8 @@ pipeline {
                     // Install Node.js using nvm (Node Version Manager)
                     sh 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash'
                     sh 'export NVM_DIR="$HOME/.nvm"'
-                    sh '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'
-                    sh '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"'
+                    sh '''source "$NVM_DIR/nvm.sh"'''
+                    sh '''[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"'''
                     sh 'nvm install node'
 
                     // Verify Node.js and npm installation
@@ -46,7 +46,7 @@ pipeline {
             steps {
                 script {
                     echo "Ngrok URL: ${env.NGROK_URL}"
-                    sh 'node server.js --webhook ${env.NGROK_URL}/webhook'
+                    sh "node server.js --webhook ${env.NGROK_URL}/webhook"
                 }
             }
         }
