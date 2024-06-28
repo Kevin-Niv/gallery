@@ -10,7 +10,6 @@ pipeline {
         stage('Setup') {
             steps {
                 script {
-                    sh 'curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -'
                     sh 'sudo apt-get install -y nodejs'
                     sh 'node --version'
                     sh 'npm --version'
