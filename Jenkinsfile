@@ -1,42 +1,37 @@
 pipeline {
     agent any
-
-    environment {
-        NPM_CONFIG_LOGLEVEL = 'warn'
-        NGROK_URL = 'https://d3e7-105-163-157-223.ngrok-free.app'
+    
+    tools {
+        nodejs "node"
     }
-
+    
+    environment {
+        NGROK_URL = 'https://67d2-41-90-179-216.ngrok-free.app'
+    }
+    
     stages {
-        stage('Setup') {
+        stage('Cloning Git') {
+            steps {
+                git url: "https://github.com/c-kiplimo/gallery", branch: "master"
+            }
+        }
+        
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        
+        stage('Start Servers and Expose via Ngrok') {
             steps {
                 script {
-                    // Install nvm
-                    sh 'mkdir -p $HOME/.nvm'
-                    sh 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash'
-
-                    // Configure nvm
-                    sh '''
-                    export NVM_DIR="$HOME/.nvm"
-                    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-                    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-                    '''
-
-                    // Load nvm
-                    sh 'source $HOME/.nvm/nvm.sh'
-
-                    // Install Node.js
-                    sh 'nvm install node'
-
-                    // Verify Node.js and npm installation
-                    sh 'node --version'
-                    sh 'npm --version'
+                    echo "Ngrok URL: ${env.NGROK_URL}"
+                    sh 'nohup node server.js'
                 }
             }
         }
-
-        // Remaining stages as before...
     }
-
+    
     post {
         always {
             echo 'Cleaning up...'
