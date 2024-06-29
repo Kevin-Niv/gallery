@@ -6,13 +6,13 @@ pipeline {
     }
     
     environment {
-        NGROK_URL = 'https://67d2-41-90-179-216.ngrok-free.app'
+        NGROK_URL = 'https://0819-105-163-1-29.ngrok-free.app'
     }
     
     stages {
         stage('Cloning Git') {
             steps {
-                git url: "https://github.com/c-kiplimo/gallery", branch: "master"
+                git url: "https://github.com/Kevin-Niv/gallery", branch: "master"
             }
         }
         
