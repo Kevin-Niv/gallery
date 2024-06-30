@@ -5,6 +5,9 @@ pipeline {
         nodejs "nodejs"
     }
         
+        environment {
+        NGROK_URL = 'https://6da3-105-163-156-120.ngrok-free.app'
+    }    
     stages {
         stage('Cloning Git') {
             steps {
