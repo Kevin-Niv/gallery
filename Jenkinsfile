@@ -34,7 +34,12 @@ pipeline {
             echo 'Pipeline completed successfully!'
         }
         failure {
-            echo 'Pipeline failed.'
+            echo 'Pipeline failed. Sending email notification...'
+            emailext (
+                subject: "Pipeline Failed: Gallery Project",
+                body: "The Jenkins pipeline for Gallery project has failed. Please check the build logs for details.",
+                to: "kevin.kipkemei@student.moringaschool.com",
+            )
         }
     }
 }
