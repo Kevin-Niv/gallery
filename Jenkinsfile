@@ -74,6 +74,7 @@ pipeline {
                 )
             }
         }
+        
         failure {
             script {
                 echo 'Deploying App to Render failed!'
@@ -85,6 +86,7 @@ pipeline {
                 )
             }
         }
+
         always {
             echo 'Cleaning up...'
             cleanWs()
