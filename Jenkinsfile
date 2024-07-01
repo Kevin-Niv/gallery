@@ -40,9 +40,16 @@ pipeline {
             }
         }
 
+        stage('Install mocha and chai') {
+            steps {
+                echo 'Installing other dependencies...'
+                sh 'npm install --save-dev mocha chai chai-http'
+            }
+        }
+        
         stage('Run Tests') {
             steps {
-                echo 'Running Tests on test'
+                cho 'Running Tests on test'
                 sh 'npm test'
             }
         }
@@ -74,7 +81,7 @@ pipeline {
                 )
             }
         }
-        
+
         failure {
             script {
                 echo 'Deploying App to Render failed!'
