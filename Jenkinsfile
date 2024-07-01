@@ -62,10 +62,6 @@ pipeline {
     }
 
     post {
-        always {
-            echo 'Cleaning up...'
-            cleanWs()
-        }
         success {
             echo 'Pipeline completed successfully!'
             script {
@@ -90,6 +86,8 @@ pipeline {
             }
         }
         always {
+            echo 'Cleaning up...'
+            cleanWs()
             script {
                 if (currentBuild.result == 'FAILURE') {
                     emailext (
