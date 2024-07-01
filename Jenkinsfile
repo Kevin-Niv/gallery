@@ -9,7 +9,7 @@ pipeline {
         RENDER_APP_NAME = 'gallery'
         SLACK_CHANNEL = 'kevin_ip1'
         SLACK_CREDENTIALS_ID = 'SLACK-TOKEN-API'
-        EMAIL_RECIPIENT = 'kevin.kipkemei@student.moringaschool.com'
+        EMAIL_RECIPIENT = 'kevinkipkemei@gmail.com'   //kevin.kipkemei@student.moringaschool.com
     }
 
     stages {
@@ -78,7 +78,7 @@ pipeline {
                 slackSend (
                     channel: "${SLACK_CHANNEL}", 
                     color: 'good', 
-                    message: "Build succeeded: ${env.JOB_NAME} ${env.BUILD_NUMBER}. Access app on https://gallery-nvtq.onrender.com/" 
+                    message: "Yooh Your Build succeeded !!!: ${env.JOB_NAME} ${env.BUILD_NUMBER}. Access app on https://gallery-nvtq.onrender.com/" 
                 )
             }
         }
@@ -90,7 +90,7 @@ pipeline {
                 slackSend (
                     channel: "${SLACK_CHANNEL}", 
                     color: 'danger', 
-                    message: "Build failed: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
+                    message: "Oops Your Build failed !!!: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
                 )
             }
         }
