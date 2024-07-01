@@ -49,7 +49,7 @@ pipeline {
         
         stage('Run Tests') {
             steps {
-                cho 'Running Tests on test'
+                echo 'Running Tests on test'
                 sh 'npm test'
             }
         }
