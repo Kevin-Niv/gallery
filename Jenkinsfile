@@ -25,24 +25,9 @@ pipeline {
             }
         }
 
-        stage('Building project') {
-            steps {
-                echo 'Building Project Stage !'
-                sh 'npm run build'
-            }
-        }
-
-        stage('Start Application') {
-            steps {
-                echo 'Starting Application'
-                sh 'npm start &'
-                sleep 10
-            }
-        }
-
         stage('Install mocha and chai') {
             steps {
-                echo 'Installing other dependencies...'
+                echo 'Installing other dependencies------'
                 sh 'npm install --save-dev mocha chai chai-http'
             }
         }
@@ -54,6 +39,22 @@ pipeline {
             }
         }
         
+        stage('Building project') {
+            steps {
+                echo 'Building Project Stage !'
+                sh 'npm run build'
+            }
+        }
+
+        stage('Start Application') {
+            steps {
+                echo 'Starting Application'
+                sh 'npm start &'
+                sleep 5
+            }
+        }
+
+
         stage('Deploy to Render') {
             steps {
                 script {
